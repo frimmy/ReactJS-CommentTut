@@ -38,7 +38,7 @@
 							placeholder="Say something..."
 							ref="text" 
 						/>
-						<input type="submit" value="POST" />
+						<input type="submit" value="Post" />
 					</form>
 				);
 			}
@@ -86,6 +86,9 @@
 			},
 			handleCommentSubmit: function(comment) {
 				// TODO: submit to the server and refresh the list
+				var comments = this.state.data;
+    			var newComments = comments.concat([comment]);
+    			this.setState({data: newComments});
 				$.ajax({
 					url: this.props.url,
 					type: 'POST',
@@ -117,7 +120,7 @@
 		});
 
 		React.renderComponent(
-			<CommentBox url="comments.json" pollInterval={2000}/>,
+			<CommentBox url="comments.json" pollInterval={1000}/>,
 			document.getElementById('content')
 		);
 	</script>
